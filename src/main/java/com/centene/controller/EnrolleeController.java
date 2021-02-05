@@ -16,19 +16,19 @@ public class EnrolleeController {
         this.enrolleeService = enrolleeService;
     }
 
-    @PostMapping("/test")
+    @PostMapping("/enrollees")
     public EnrolleeEntity addEnrollee(@RequestBody EnrolleeDTO enrolleeDTO) {
-        return enrolleeService.addDependent(enrolleeDTO);
+        return enrolleeService.addEnrollee(enrolleeDTO);
     }
 
-    @PutMapping(value = "")
-    public String modifyEnrolllee(){
-        return "fone";
+    @PutMapping(value = "/enrollees")
+    public EnrolleeEntity modifyEnrolllee(@RequestBody EnrolleeDTO enrolleeDTO){
+        return enrolleeService.updateEnrollee(enrolleeDTO);
     }
 
-    @DeleteMapping(value = "vsvs")
-    public boolean removeEnrollee(){
-        return false;
+    @DeleteMapping(value = "/enrollees/{id}")
+    public void removeEnrollee(@PathVariable Long id){
+        enrolleeService.deleteEnrollee(id);
     }
 
 

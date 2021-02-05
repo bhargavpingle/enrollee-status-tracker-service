@@ -15,19 +15,25 @@ public class EnrolleeService {
         this.enrolleeJpaRespository = enrolleeJpaRespository;
     }
 
-    public EnrolleeEntity addDependent(EnrolleeDTO enrolleeDTO){
-        EnrolleeEntity enrolleeEntity = new EnrolleeEntity(enrolleeDTO.getId(), enrolleeDTO.getName(),
-                enrolleeDTO.isActivationStatus(), enrolleeDTO.getBirthDate(), enrolleeDTO.getDependentEntities());
-        return enrolleeJpaRespository.save(enrolleeEntity);
+    //adds the entity if doesnt exist otherwise returns null
+    public EnrolleeEntity addEnrollee(EnrolleeDTO enrolleeDTO){
+        if(enrolleeJpaRespository.findById(enrolleeDTO.getId()).isPresent()){
+            return null;
+        } else {
+            EnrolleeEntity enrolleeEntity = new EnrolleeEntity(enrolleeDTO.getId(), enrolleeDTO.getName(),
+                    enrolleeDTO.isActivationStatus(), enrolleeDTO.getBirthDate(), enrolleeDTO.getDependentEntities());
+            return enrolleeJpaRespository.save(enrolleeEntity);
+        }
     }
 
-    public EnrolleeEntity updateDependents(EnrolleeDTO enrolleeDTO){
-        EnrolleeEntity enrolleeEntity = new EnrolleeEntity(enrolleeDTO.getId(), enrolleeDTO.getName(),
-                enrolleeDTO.isActivationStatus(), enrolleeDTO.getBirthDate(), enrolleeDTO.getDependentEntities());
-        return enrolleeJpaRespository.save(enrolleeEntity);
+    //updates entity if it exits otherwise adds new entity
+    public EnrolleeEntity updateEnrollee(EnrolleeDTO enrolleeDTO){
+            EnrolleeEntity enrolleeEntity = new EnrolleeEntity(enrolleeDTO.getId(), enrolleeDTO.getName(),
+                    enrolleeDTO.isActivationStatus(), enrolleeDTO.getBirthDate(), enrolleeDTO.getDependentEntities());
+            return enrolleeJpaRespository.save(enrolleeEntity);
     }
 
-    public void deleteDependents(Long id){
+    public void deleteEnrollee(Long id){
         enrolleeJpaRespository.deleteById(id);
     }
 }

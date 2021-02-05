@@ -15,12 +15,17 @@ public class DependentService {
         this.dependentJpaRepository = dependentJpaRepository;
     }
 
+    //adds the entity if doesnt exist otherwise returns null
     public DependentEntity addDependent(DependentDTO dependentDTO){
+        if(dependentJpaRepository.findById(dependentDTO.getId()).isPresent()){
+            return null;
+        }
         DependentEntity dependentEntity = new DependentEntity(dependentDTO.getId(), dependentDTO.getName(),
                                                                 dependentDTO.getBirthDate());
             return dependentJpaRepository.save(dependentEntity);
     }
 
+    //updates entity if it exits otherwise adds new entity
     public DependentEntity updateDependents(DependentDTO dependentDTO){
         DependentEntity dependentEntity = new DependentEntity(dependentDTO.getId(), dependentDTO.getName(),
                                                 dependentDTO.getBirthDate());
