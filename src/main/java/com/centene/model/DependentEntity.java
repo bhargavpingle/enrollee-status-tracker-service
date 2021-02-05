@@ -2,7 +2,6 @@ package com.centene.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.swing.*;
 import java.util.Date;
 import java.util.Objects;
 

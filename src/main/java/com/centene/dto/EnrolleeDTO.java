@@ -2,10 +2,6 @@ package com.centene.dto;
 
 import com.centene.model.DependentEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
